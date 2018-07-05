@@ -170,9 +170,12 @@
 
 - (void)updatePlaceholderTextView {
     if (self.text.length) {
-        [self.placeholderTextView removeFromSuperview];
+        self.placeholderTextView.hidden = YES;
     } else {
-        [self insertSubview:self.placeholderTextView atIndex:0];
+        self.placeholderTextView.hidden = NO;
+        if (!self.placeholderTextView.superview) {
+            [self insertSubview:self.placeholderTextView atIndex:0];
+        }
     }
 
     if (self.needsUpdateFont) {
